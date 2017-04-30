@@ -1,0 +1,271 @@
+ <!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>OrderSquare - Procurement Simplified</title>
+
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- <link rel="stylesheet" href="assets/css/material.cyan-light_blue.css"> -->
+    <link rel="stylesheet" href="assets/css/material_teal.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #dedede;
+  font-family: 'Roboto';
+}
+
+h1 {
+  color: #929292;
+  font-weight: 400;
+  font-size: 1em;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.card {
+  width: 100%;
+  height: 260px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  
+  position: relative;
+  overflow: hidden;
+  -webkit-transition:  width 1s , height 1s;
+  -moz-transition:  width 1s , height 1s;
+  -o-transition:  width 1s , height 1s;
+  -ms-transition:  width 1s , height 1s;
+
+
+}
+
+.card.expand  {
+  
+  height: 500px;
+  width: calc(100% * 2 );
+  background-color:  #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  
+  position: relative;
+  overflow: hidden;
+}
+
+
+.card .main {
+  width: 100%;
+  height: 70%;
+  background-color: #97f4ff;
+  z-index: 1;
+}
+.card .fab {
+  width: 50px;
+  height: 50px;
+  background-color: #ffe375;
+  position: absolute;
+  z-index: 99;
+  left: 20px;
+  top: calc(70% - 25px);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transform: scale3d(1, 1, 1);
+  transition: 0.6s cubic-bezier(0.65, -0.4, 0.49, 1.4);
+  transition-delay: .2s;
+}
+.card .fab.expand {
+  cursor: default;
+  transform: scale3d(44, 45, 1);
+  transition: 0.6s cubic-bezier(0.65, -0.68, 0.49, 1.94);
+  transition-delay: .1s;
+}
+
+.card .fab-sha {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 20px;
+  top: calc(70% - 25px);
+  border: 1px solid #ffe375;
+  border-radius: 50%;
+  transform: scale3d(0.9, 0.9, 1);
+  transition: .4s ease-in-out;
+  transition-delay: .5s;
+}
+
+.card .fab-sha.active {
+  transform: scale3d(4, 4, 1);
+  border: 3px solid #ffe375;
+  transition: .4s ease-in-out;
+}
+
+.close {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+  transform: rotateZ(0deg) scale3d(0, 0, 0);
+  cursor: pointer;
+  transition: 0.4s cubic-bezier(0.65, -0.68, 0.49, 1.94);
+}
+.close:before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  background-color: white;
+  margin-left: calc(50% - 12px);
+  margin-top: calc(50% - 1.5px);
+}
+.close:after {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 3px;
+  background-color: white;
+  margin-top: calc(50% - 12px);
+  margin-left: calc(50% - 1.5px);
+}
+.close.active {
+  transform: rotateZ(135deg) scale3d(1, 1, 1);
+  transition: 0.4s cubic-bezier(0.65, -0.68, 0.49, 1.94);
+  transition-delay: .4s;
+}
+
+
+    </style>
+  </head>
+  <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Home</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+            </div>
+          </div>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">Contact</li>
+            <li class="mdl-menu__item">Legal information</li>
+          </ul>
+        </div>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--teal mdl-color-text--blue-grey-50">
+        <header class="demo-drawer-header">
+          <img  src="assets/images/user.jpg" class="demo-avatar ">
+          <div class="demo-avatar-dropdown">
+            <span>hello@example.com</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <!-- <i class="material-icons" role="presentation">arrow_drop_down</i> -->
+              <i class="material-icons">expand_more</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item">hello@example.com</li>
+              <li class="mdl-menu__item">info@example.com</li>
+              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+            </ul>
+          </div>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--grey-100">
+          <a class="mdl-navigation__link" href=""><i class="mdl-font-color material-icons" role="presentation">home</i>Home</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-font-color material-icons" role="presentation">shopping_cart</i>Order</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-font-color material-icons" role="presentation">history</i>Order History</a>
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href=""><i class="mdl-font-color material-icons" role="presentation">help_outline</i>
+            <span class="">Help</span>
+          </a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet  mdl-cell--6-col-phone">
+            <div class="card" id="card1">
+                <div class="main"></div>
+                <div class="fab"></div>
+                <div class="fab-sha"></div>
+                <div class="close"></div>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet  mdl-cell--6-col-phone">
+            <div class="card" id="card2">
+                <div class="main"></div>
+                <div class="fab"></div>
+                <div class="fab-sha"></div>
+                <div class="close"></div>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet  mdl-cell--6-col-phone">
+            <div class="card" id="card3">
+                <div class="main"></div>
+                <div class="fab"></div>
+                <div class="fab-sha"></div>
+                <div class="close"></div>
+            </div>
+          </div>
+         
+          
+        </div>
+      </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="assets/js/material.js"></script>
+    <script>
+
+      $( document ).ready(function() {
+        $(".fab").on('click', function(){
+          $(this).parent().addClass("expand");
+          
+          $(".close").addClass("active");
+          
+        })
+
+        $(".close").on('click', function(){
+          $(".close").removeClass("active");
+          
+          $(".card").removeClass("expand");
+        })
+
+
+
+      });
+    </script>
+  </body>
+</html>

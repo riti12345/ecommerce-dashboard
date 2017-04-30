@@ -1,0 +1,21 @@
+body,div,html,td,th,table, input, button{font-family: "Trebuchet MS", Helvetica, sans-serif;color:#454}
+#contains div div{display: inline-block;width:49%;}
+.invoice-title{background-color:#DDD;padding:1%}
+.client_mop{visibility:hidden}
+#contains div .text-right{text-align: right;margin-top:5%}
+table, td, th {border: 1px solid #ddd;}
+button{display: none}
+body{font-size: 1.5em;height:1350px}
+th{font-size: 1.5em;}
+.inv_val{text-align: center}
+input,select{text-align: center;outline: none;border:none;padding:3%;}
+select {-webkit-appearance: none;
+ -moz-appearance: none;  
+ appearance: none;}
+.sorting{padding:3%;text-align: center}
+hr{margin-top:5%}
+.count,tr th:first-child{display: none}
+.sorting{display: block}
+img{width:30%}
+.table-responsive{height:auto;}
+.table-condensed{width: 100%;}
